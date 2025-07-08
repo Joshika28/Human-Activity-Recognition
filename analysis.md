@@ -1,7 +1,6 @@
 ---
-title: "Predict activity quality from activity monitors"
-author: "Onur Akpolat"
-date: "24. January 2015"
+title: "Human Activity Recognition Report"
+author: "Author"
 output:
   html_document:
     keep_md: yes
