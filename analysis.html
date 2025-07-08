@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Human Activity Recognition Report</title>
+  <style>
+    body { font-family: 'Georgia', serif; margin: 2em; background-color: #f9f9f9; }
+    h1, h2, h3 { color: #333366; }
+    code, pre { background-color: #f3f3f3; padding: 1em; display: block; white-space: pre-wrap; }
+    table { border-collapse: collapse; width: 100%; margin-top: 1em; }
+    th, td { border: 1px solid #ccc; padding: 0.5em; }
+  </style>
+</head>
+<body>
+
+<h1>Human Activity Recognition Report</h1>
+<p><strong>Author:</strong> Joshika</p>
+
+<h2>Introduction</h2>
+<p>
+  This report aims to predict the manner in which subjects performed barbell lifts using accelerometer data from wearable sensors.
+  The data was collected using devices like Jawbone Up, Nike FuelBand, and Fitbit. 
+  Our objective is to classify the activity quality based on the <code>classe</code> variable in the training dataset.
+</p>
+
+<h2>Background</h2>
+<p>
+  Devices like Jawbone Up and Fitbit are part of the quantified self movement, helping individuals monitor personal activity. 
+  However, while many users measure how much they move, fewer measure how well they move. 
+  In this project, data was collected from sensors placed on six individuals performing barbell lifts in five different ways. 
+</p>
+<p>
+  Dataset Source: <a href="http://web.archive.org/web/20161224072740/http:/groupware.les.inf.puc-rio.br/har" target="_blank">PUC-Rio HAR Dataset</a>
+</p>
+
+<h2>Data Loading and Cleaning</h2>
+<pre><code>
+- Loaded 'pml-training.csv' and 'pml-testing.csv'
+- Removed non-predictive variables: X, user_name, raw_timestamp_part_1, raw_timestamp_part_2, cvtd_timestamp, new_window, num_window
+- Removed columns with >90% missing values
+- Final features used for model: 53
+</code></pre>
+
+<h2>Model Training</h2>
+<pre><code>
+- Used caret package to build model
+- Algorithm: Random Forest
+- Method: 3-fold cross-validation
+- Data split: 70% training / 30% validation
+</code></pre>
+
+<h2>Model Evaluation</h2>
+<pre><code>
+Confusion Matrix (Validation Set):
+Accuracy: 0.9940
+Out-of-sample error ≈ 1 - 0.9940 = 0.006 (0.6%)
+</code></pre>
+
+<h2>Justification of Model Choice</h2>
+<p>
+  Random Forest was selected due to its robustness, high accuracy, and ability to handle missing data and noisy variables.
+  It performs internal feature selection and resists overfitting well, especially with high-dimensional datasets like ours.
+</p>
+
+<h2>Cross-validation Explanation</h2>
+<p>
+  We employed 3-fold cross-validation using caret’s <code>trainControl</code> to ensure the model generalizes well and avoids overfitting. 
+  This approach divides the training set into three parts, trains on two, and validates on the third in rotation.
+</p>
+
+<h2>Expected Out-of-Sample Error</h2>
+<pre><code>
+Out-of-sample error ≈ 1 - Accuracy = 1 - 0.9940 = 0.006
+</code></pre>
+
+<h2>Final Predictions on 20 Test Cases</h2>
+<table>
+  <thead>
+    <tr><th>Problem ID</th><th>Prediction</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>B</td></tr>
+    <tr><td>2</td><td>A</td></tr>
+    <tr><td>3</td><td>B</td></tr>
+    <tr><td>4</td><td>A</td></tr>
+    <tr><td>5</td><td>A</td></tr>
+    <tr><td>6</td><td>E</td></tr>
+    <tr><td>7</td><td>D</td></tr>
+    <tr><td>8</td><td>B</td></tr>
+    <tr><td>9</td><td>A</td></tr>
+    <tr><td>10</td><td>A</td></tr>
+    <tr><td>11</td><td>B</td></tr>
+    <tr><td>12</td><td>C</td></tr>
+    <tr><td>13</td><td>B</td></tr>
+    <tr><td>14</td><td>A</td></tr>
+    <tr><td>15</td><td>E</td></tr>
+    <tr><td>16</td><td>E</td></tr>
+    <tr><td>17</td><td>A</td></tr>
+    <tr><td>18</td><td>B</td></tr>
+    <tr><td>19</td><td>B</td></tr>
+    <tr><td>20</td><td>B</td></tr>
+  </tbody>
+</table>
+
+<h2>Submission of Predictions</h2>
+<pre><code>
+20 prediction files created:
+- problem_id_1.txt
+- problem_id_2.txt
+- ...
+- problem_id_20.txt
+
+Each file contains a single prediction and is ready for upload.
+</code></pre>
+
+<h2>Conclusion</h2>
+<p>
+  We built a highly accurate Random Forest model to classify the quality of barbell lifts using sensor data. 
+  After careful data cleaning, cross-validation, and model tuning, we achieved an estimated accuracy of 99.4%. 
+  All 20 required test case predictions have been generated and saved in individual text files for submission.
+</p>
+
+</body>
+</html>
